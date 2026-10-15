@@ -14,7 +14,6 @@ A collection of reusable skills for **Antigravity (`agy`)** and compatible AI co
 skills/
 ├── LICENSE
 ├── README.md
-├── skills.json
 └── codmod-translator/
     ├── SKILL.md
     ├── references/
@@ -45,21 +44,7 @@ mkdir -p ~/.gemini/antigravity-cli/skills
 cp -R codmod-translator ~/.gemini/antigravity-cli/skills/
 ```
 
-### Option 3: Link Directly via `skills.json` (Auto-Updates on `git pull`)
-
-If you clone this repository locally (e.g., `~/Desktop/skills`), you can reference its [`skills.json`](./skills.json) in `~/.gemini/config/skills.json`:
-
-```json
-{
-  "inherits": [
-    {
-      "path": "~/Desktop/skills/skills.json"
-    }
-  ]
-}
-```
-
-### Option 4: Install in a Specific Project Workspace
+### Option 3: Install in a Specific Project Workspace
 
 ```bash
 mkdir -p /path/to/your-project/.agents/skills
