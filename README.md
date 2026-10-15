@@ -55,11 +55,11 @@ cp -R codmod-translator /path/to/your-project/.agents/skills/
 
 ## Usage Guide: `codmod-translator`
 
-The **`codmod-translator`** skill turns any Google Cloud Migration Center Application Modernization Assessment (`codmod`) report into an interactive, end-to-end code refactoring and Google Cloud deployment workflow. It is completely repository- and language-agnostic (supporting `.NET`, `Java`, `Python`, `Node.js`, `Go`, `C/C++`, and AI/MLOps workloads).
+The **`codmod-translator`** skill turns any Google Cloud Migration Center Application Modernization Assessment (`codmod`) report into an interactive, end-to-end code refactoring and Google Cloud deployment workflow across any codebase, language, or `codmod` report type.
 
 ```mermaid
 flowchart LR
-    A["1. Source Repo\n(.NET / Java / Python / Go)"] --> B["2. codmod CLI\nAssessment Report (.html/.md/.json)"]
+    A["1. Source Repo"] --> B["2. codmod CLI\nAssessment Report"]
     B --> C["3. codmod-translator Skill\nMarkdown Slices + Interactive Q&A"]
     C --> D["4. Execution Blueprint\nmodernization-plan/"]
     D --> E["5. Autonomous /goal Execution\nRefactor + Provision + Deploy"]
@@ -84,6 +84,7 @@ flowchart LR
   sudo mv ./codmod /usr/local/bin/codmod
   ```
 - **Python 3** (used by [`extract_codmod_report.py`](./codmod-translator/scripts/extract_codmod_report.py) to parse large HTML reports using only the Python standard library).
+- **[Google Developer Knowledge MCP](https://developers.google.com/knowledge/mcp)** *(optional, recommended)*: Allows the agent to query live Google Cloud documentation (`search_documents` / `get_documents` / `answer_query`) for your selected target services.
 
 ---
 
@@ -99,17 +100,17 @@ Use this when starting from a raw codebase without an existing assessment report
 ```
 
 #### Option B: Pre-Generated Report Flow (Use Existing `.html` Report + Refactor + Deploy)
-Use this when you already have a `codmod` report (e.g., `assessment-report.html`) in the workspace and want to skip the `codmod` scan time:
+Use this when you already have a `codmod` report (e.g., `report.html`) in the workspace and want to skip the `codmod` scan time:
 
 ```markdown
-/goal Review @assessment-report.html, help me choose the target modernization path, and execute the modernization plan end-to-end to deploy the application and its supporting services on Google Cloud.
+/goal Review @report.html, help me choose the target modernization path, and execute the modernization plan end-to-end to deploy the application and its supporting services on Google Cloud.
 ```
 
 #### Option C: Plan-Only Preview (Generate Execution Plan Without Deploying)
 Use this when you want to extract the report digest, pick your architecture, and generate the tailored `/goal` execution plan for review before modifying code or provisioning cloud resources:
 
 ```markdown
-Review @assessment-report.html and generate the modernization execution plan, but don't deploy anything yet.
+Review @report.html and generate the modernization execution plan, but don't deploy anything yet.
 ```
 
 ---
